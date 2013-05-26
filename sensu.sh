@@ -31,8 +31,8 @@ apt-get -y --allow-unauthenticated --force-yes install rabbitmq-server
 # Generate SSL Certs
 git clone git://github.com/joemiller/joemiller.me-intro-to-sensu.git
 cd joemiller.me-intro-to-sensu/
-~/ssl_certs.sh clean
-~/ssl_certs.sh generate
+./ssl_certs.sh clean
+./ssl_certs.sh generate
 
 mkdir -p /etc/rabbitmq/ssl
 cp ./server_key.pem /etc/rabbitmq/ssl/
@@ -80,7 +80,8 @@ update-rc.d sensu-dashboard defaults
 
 # SSL
 mkdir -p /etc/sensu/ssl/
-cp client_key.pem client_cert.pem  /etc/sensu/ssl/
+cp ~/joemiller.me-intro-to-sensu/client_key.pem /etc/sensu/ssl/
+cp ~/joemiller.me-intro-to-sensu/client_cert.pem  /etc/sensu/ssl/
 
 # Create just enough sensu to start /etc/sensu/config.json
 sudo cat > /etc/sensu/config.json <<EOF
